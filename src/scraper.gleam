@@ -6,12 +6,12 @@ import gleam/option.{Some}
 import gleam/otp/task
 import gleam/result.{try}
 import gleam/uri
+
 import scraper/collector
 import scraper/queue
 
 fn handler(url: uri.Uri, res: response.Response(String)) {
   let assert Ok(tree) = floki.parse_document(res.body)
-  // io.debug(tree)
 
   let links =
     tree
@@ -25,7 +25,7 @@ fn handler(url: uri.Uri, res: response.Response(String)) {
         _ -> uri.merge(url, href)
       }
     })
-    |> list.map(fn(l) { uri.to_string(l) })
+    |> list.map(uri.to_string(_))
 
   io.debug(links)
   Nil

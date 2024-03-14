@@ -9,6 +9,7 @@ import gleam/http/response
 import gleam/otp/task
 import gleam/result.{try}
 import gleam/uri
+
 import scraper/store
 
 pub type Request {

@@ -3,6 +3,7 @@ import gleam/bit_array
 import gleam/erlang/atom
 import gleam/erlang/process.{type Subject}
 import gleam/result
+
 import radish
 import radish/client
 

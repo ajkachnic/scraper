@@ -1,7 +1,6 @@
 import gleam/dynamic
 import gleam/erlang/atom
 import gleam/io
-import gleam/list
 
 pub type Props {
   Private
@@ -14,16 +13,15 @@ pub opaque type Table(k, v) {
 }
 
 pub fn new(name: atom.Atom) {
-  let tbl =
-    [
-      atom.create_from_string("set")
-        |> dynamic.from,
-      atom.create_from_string("named_table")
-        |> dynamic.from,
-      atom.create_from_string("public")
-        |> dynamic.from,
-    ]
-    |> new_table(name, _)
+  [
+    atom.create_from_string("set")
+      |> dynamic.from,
+    atom.create_from_string("named_table")
+      |> dynamic.from,
+    atom.create_from_string("public")
+      |> dynamic.from,
+  ]
+  |> new_table(name, _)
 
   // Set(Table(tbl))
   Set(Table(name))
