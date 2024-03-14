@@ -1,0 +1,25 @@
+name = "scraper"
+version = "0.1.0"
+
+# Fill out these fields if you intend to generate HTML documentation or publish
+# your project to the Hex package manager.
+#
+# description = ""
+# licences = ["Apache-2.0"]
+# repository = { type = "github", user = "username", repo = "project" }
+# links = [{ title = "Website", href = "https://gleam.run" }]
+
+[dependencies]
+gleam_stdlib = "~> 0.32"
+finch_gleam = "~> 6.0"
+gleam_http = "~> 3.5"
+gleam_erlang = "~> 0.24"
+gleam_hackney = "~> 1.2"
+gleeunit = "~> 1.0"
+floki = "~> 0.36"
+gleam_otp = "~> 0.9"
+gollum = "~> 0.3"
+radish = "~> 0.13"
+gleam_crypto = "~> 1.3"
+
+
