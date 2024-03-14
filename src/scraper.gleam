@@ -41,7 +41,7 @@ pub fn main() {
     |> result.replace_error(Nil),
   )
 
-  use _ <- try(queue.add_url(queue, "https://thorstenball.com"))
+  use _ <- try(queue.add_url(queue, "https://bing.com"))
   use _ <- try(queue.add_url(queue, "https://google.com"))
   use _ <- try(queue.add_url(queue, "https://duckduckgo.com"))
 
@@ -51,29 +51,5 @@ pub fn main() {
     workers: 5,
   ))
 
-  use uri <- try(uri.parse("https://google.com"))
-
-  // Ok(Nil)
-  case collector.scrape(collector, collector.from_uri(uri)) {
-    Ok(t) -> {
-      task.await_forever(t)
-      |> io.debug
-      |> result.replace_error(Nil)
-    }
-    Error(e) -> {
-      Error(io.debug(e))
-      |> result.replace_error(Nil)
-    }
-  }
-
   Ok(Nil)
-  // case collector.scrape(c, "https://thorstenball.com/", http.Get) {
-  //   Ok(t) -> {
-  //     task.await_forever(t)
-  //     |> io.debug
-  //   }
-  //   Error(e) -> {
-  //     Error(io.debug(e))
-  //   }
-  // }
 }
