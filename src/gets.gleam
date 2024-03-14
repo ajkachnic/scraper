@@ -1,7 +1,7 @@
 import gleam/dynamic
 import gleam/erlang/atom
-import gleam/list
 import gleam/io
+import gleam/list
 
 pub type Props {
   Private

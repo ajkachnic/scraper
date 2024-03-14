@@ -3,8 +3,8 @@ import gleam/http/response
 import gleam/io
 import gleam/list
 import gleam/option.{Some}
-import gleam/result.{try}
 import gleam/otp/task
+import gleam/result.{try}
 import gleam/uri
 import scraper/collector
 import scraper/queue

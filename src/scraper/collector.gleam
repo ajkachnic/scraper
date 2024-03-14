@@ -6,13 +6,10 @@ import gleam/hackney
 import gleam/http
 import gleam/http/request
 import gleam/http/response
-import gleam/io
 import gleam/otp/task
 import gleam/result.{try}
 import gleam/uri
-// 
 import scraper/store
-import gets
 
 pub type Request {
   Request(
@@ -116,7 +113,7 @@ pub fn scrape(
 
   use req <- try(
     to_http_request(req)
-    |> result.map_error(fn(_) { Other(Nil) }),
+    |> result.replace_error(Other(Nil)),
   )
   let req = request.set_header(req, "User-Agent", c.user_agent)
 
@@ -160,7 +157,7 @@ fn request_check(
   let hash = request_hash(request.uri)
   use visited <- try(
     store.is_visited(c.store, hash)
-    |> result.map_error(fn(_) { FailedToCheck }),
+    |> result.replace_error(FailedToCheck),
   )
 
   case visited {

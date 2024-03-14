@@ -14,8 +14,9 @@ pub type Store {
   Redis(client: RedisClient, timeout: Int, prefix: String)
 }
 
-pub fn visited(s: Store, request_id: BitArray) -> Result(Store, Nil) {
-  case s {
+/// Mark a site as visited
+pub fn visited(store: Store, request_id: BitArray) -> Result(Store, Nil) {
+  case store {
     ETS(visited) ->
       Ok(
         gets.insert(visited, request_id, True)
@@ -30,8 +31,12 @@ pub fn visited(s: Store, request_id: BitArray) -> Result(Store, Nil) {
   }
 }
 
-pub fn is_visited(s: Store, request_id: BitArray) -> Result(Bool, Nil) {
-  case s {
+/// Check if a site has already been visited
+/// 
+/// In the future, this could use some kind of cache invalidation
+/// strategy so that we refetch sites after a period of time
+pub fn is_visited(store: Store, request_id: BitArray) -> Result(Bool, Nil) {
+  case store {
     ETS(visited) -> {
       case gets.lookup(visited, request_id) {
         Ok(_) -> Ok(True)
